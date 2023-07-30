@@ -1,0 +1,27 @@
+@mixin title-h1-medium {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 500;
+  size: 24px;
+  line-height: 36px;
+}
+
+@mixin title-h2-medium {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 500;
+  size: 16px;
+  line-height: 24px;
+}
+
+@mixin text-regular {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 400;
+  size: 16px;
+  line-height: 24px;
+}
+
+@mixin time-regular {
+  font-family: "Kantumruy Pro", "Kantumruy", sans-serif;
+  font-weight: 400;
+  size: 16px;
+  line-height: 24px;
+}
