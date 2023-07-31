@@ -1,0 +1,25 @@
+@import "src/assets/styles/text";
+@import "src/assets/styles/colors";
+
+.text-input-wrapper {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+
+  img {
+    height: 24px;
+    width: 24px;
+  }
+
+  &__input {
+    color: $gray-100;
+    @include text-regular;
+    padding-left: 8px;
+
+    &::placeholder {
+      color: $gray-80;
+      @include title-h2-medium;
+    }
+  }
+}

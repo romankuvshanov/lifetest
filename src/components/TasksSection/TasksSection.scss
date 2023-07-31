@@ -1,0 +1,34 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/text";
+
+.tasks-section {
+  padding: 24px 20px 0 23px;
+  border-right: 1px solid $gray-40;
+  width: 850px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+  }
+
+  &__headline {
+    @include title-h1-medium;
+  }
+}
+
+.tasks {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 16px;
+  }
+
+  &__headline {
+    @include text-regular;
+    color: $gray-80;
+  }
+
+}

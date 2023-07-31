@@ -1,0 +1,37 @@
+@import "src/assets/styles/colors";
+
+.checkbox{
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  appearance: none;
+
+  &:disabled::after {
+    background-color: $gray-20;
+  }
+
+  &:disabled:checked::after {
+    content: url("checkbox-check-grey.svg");
+    background-color: $gray-20;
+    border: 1px solid $gray-20;
+  }
+
+  &::after {
+    content: '';
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray-0;
+    border: 1px solid $gray-60;
+  }
+
+  &:checked:after {
+    content: url("checkbox-check.svg");
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+}
