@@ -1,0 +1,44 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/text";
+
+.secondary-button {
+  text-align: center;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: $gray-0;
+  color: $primary-color;
+  @include title-h2-medium;
+
+  img {
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
+      brightness(102%) contrast(101%);
+  }
+
+  &__title {
+    padding-left: 8px;
+  }
+
+  &:hover {
+    background-color: #e2ecff;
+  }
+
+  &:focus {
+    background-color: rgba(30, 79, 208, 1);
+    color: $gray-0;
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:disabled {
+    background-color: $gray-0;
+    color: $gray-80;
+
+    img {
+      filter: invert(48%) sepia(0%) saturate(783%) hue-rotate(144deg)
+        brightness(97%) contrast(80%);
+    }
+  }
+}
