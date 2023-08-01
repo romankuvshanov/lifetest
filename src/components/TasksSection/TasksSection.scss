@@ -24,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     padding-right: 16px;
+    padding-bottom: 8px;
   }
 
   &__headline {
@@ -31,4 +32,42 @@
     color: $gray-80;
   }
 
+  & .text-input-wrapper {
+    padding: 8px 0 16px 0;
+  }
+
+  & .text-input-wrapper img {
+    filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg) brightness(93%) contrast(68%);
+  }
+
+  &__task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px;
+
+    &:hover {
+      background-color: $gray-20;
+    }
+  }
+
+  .task {
+    &__title-wrapper {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &__title {
+      padding-left: 16px;
+      @include text-regular;
+
+    }
+
+    &__time {
+      @include time-regular;
+      color: $gray-80;
+    }
+  }
 }

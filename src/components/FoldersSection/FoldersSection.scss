@@ -1,7 +1,63 @@
 @import "src/assets/styles/colors";
+@import "src/assets/styles/text";
 
 .folders-section {
   width: 268px;
   height: calc(100vh - 64px);
   background-color: $gray-20;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  & .text-input-wrapper img {
+    filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg) brightness(93%) contrast(68%);
+  }
+
+  &__folder {
+    height: 48px;
+    width: 204px;
+    background-color: $gray-0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+
+    img {
+      filter: brightness(0) invert(1);
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: $primary-color;
+    }
+
+    &:hover .folders-section__paragraph {
+      color: $gray-0;
+      cursor: pointer;
+    }
+
+    &:hover img {
+      filter: brightness(0) invert(1);
+    }
+
+    &--archive {
+      justify-content: left;
+
+      img {
+        padding-right: 8px;
+        filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg) brightness(93%) contrast(68%);
+        cursor: default;
+      }
+    }
+  }
+
+  &__paragraph {
+    @include title-h2-medium;
+    color: $gray-80;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }

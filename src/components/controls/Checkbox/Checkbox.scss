@@ -5,6 +5,7 @@
   width: 16px;
   cursor: pointer;
   appearance: none;
+  vertical-align: text-bottom;
 
   &:disabled::after {
     background-color: $gray-20;
