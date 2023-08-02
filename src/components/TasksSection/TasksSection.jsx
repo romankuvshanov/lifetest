@@ -11,9 +11,10 @@ import TaskBar from "../TaskBar/TaskBar";
 
 export default function TasksSection({ currentFolderId }) {
   console.log(currentFolderId);
+  console.log('task section render');
 
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
-  const currentFolder = foldersAndTasks.filter(
+  const currentFolder = [...foldersAndTasks].filter(
     (folder) => folder.id === currentFolderId,
   )[0];
   const dispatch = useDispatch();
