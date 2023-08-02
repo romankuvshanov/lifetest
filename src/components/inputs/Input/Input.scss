@@ -4,6 +4,8 @@
 .text-input-wrapper {
   padding: 8px 16px;
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
   align-items: center;
   height: 40px;
 
@@ -16,6 +18,18 @@
     color: $gray-100;
     @include text-regular;
     padding-left: 8px;
+
+    &:focus {
+      padding-left: 0;
+    }
+
+    &:focus::placeholder {
+      opacity: 0;
+    }
+
+    &:focus + img {
+      display: none;
+    }
 
     &::placeholder {
       color: $gray-80;
