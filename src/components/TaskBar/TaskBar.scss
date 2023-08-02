@@ -1,4 +1,83 @@
+@import "src/assets/styles/text";
+@import "src/assets/styles/colors";
+
 .task-bar {
-  height: calc(100vh - 64px);
-  padding: 24px 32px;
+  padding: 16px 24px;
+
+  &__task-title {
+    @include title-h1-medium;
+  }
+
+  &__folder-title {
+    @include title-h2-medium;
+    color: $gray-80;
+    padding-bottom: 24px;
+  }
+
+  &__counter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+  }
+
+  &__date {
+    @include text-regular;
+    color: $gray-80;
+  }
+
+  &__time {
+    @include time-regular;
+    color: $gray-100;
+  }
+
+  &__pause-icon {
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+  }
+
+  &__complete {
+    @include title-h2-medium;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px 0;
+
+    .checkbox {
+      height: 24px;
+      width: 24px;
+
+      &::after {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+  &__archive {
+    @include title-h2-medium;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px 0;
+  }
+
+  &__archive-icon {
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+  }
+
+  &__delete {
+    @include title-h2-medium;
+    color: $error-color;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px 0;
+  }
+
+  &__trash-icon {
+    filter: invert(14%) sepia(78%) saturate(4068%) hue-rotate(351deg) brightness(113%) contrast(98%);
+  }
 }
