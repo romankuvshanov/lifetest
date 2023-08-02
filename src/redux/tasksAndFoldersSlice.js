@@ -4,22 +4,32 @@ const tasksAndFoldersSlice = createSlice({
   name: "tasksAndFolders",
   initialState: [
     {
-      name: "Основные задачи",
+      name: "Архив",
       tasks: [],
       id: 0,
       canDelete: false,
+      isArchive: true,
+    },
+    {
+      name: "Основные задачи",
+      tasks: [],
+      id: 1,
+      canDelete: false,
+      isArchive: false,
     },
     {
       name: "Аутсорс",
       tasks: [],
-      id: 1,
+      id: 2,
       canDelete: true,
+      isArchive: false,
     },
     {
       name: "Задачи на февраль",
       tasks: [],
-      id: 2,
+      id: 3,
       canDelete: true,
+      isArchive: false,
     },
     {
       name: "Задачи дениса",
@@ -46,8 +56,9 @@ const tasksAndFoldersSlice = createSlice({
           archived: false,
         },
       ],
-      id: 3,
+      id: 4,
       canDelete: true,
+      isArchive: false,
     },
   ],
   reducers: {

@@ -8,7 +8,10 @@ import { useDispatch } from "react-redux";
 import { addFolder, deleteFolder } from "../../redux/tasksAndFoldersSlice";
 import { useState } from "react";
 
-export default function FoldersSection({ currentFolderId, setCurrentFolderId }) {
+export default function FoldersSection({
+  currentFolderId,
+  setCurrentFolderId,
+}) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const dispatch = useDispatch();
   const [newFolderName, setNewFolderName] = useState("");
@@ -24,8 +27,10 @@ export default function FoldersSection({ currentFolderId, setCurrentFolderId }) 
 
   function handleDeleteClick(id) {
     if (window.confirm("Удалить папку?")) {
-      dispatch(deleteFolder({ id: id }));
+      console.log('Current folder id: ' + currentFolderId);
       setCurrentFolderId(0);
+      dispatch(deleteFolder({ id: id }));
+      console.log('Current folder id: ' + currentFolderId);
     }
   }
 
@@ -45,11 +50,22 @@ export default function FoldersSection({ currentFolderId, setCurrentFolderId }) 
         .map((folder) => {
           return (
             <div
-              className={`folders-section__folder ${currentFolderId === folder?.id && 'folders-section__folder--active'}`}
+              className={`folders-section__folder ${
+                currentFolderId === folder?.id &&
+                "folders-section__folder--active"
+              }`}
               key={folder.id}
               onClick={() => setCurrentFolderId(folder.id)}
             >
-              <p className={"folders-section__paragraph"}>{folder.name}</p>
+              {/*TODO: Сделать проще, три варианта?*/}
+              <p
+                className={`folders-section__paragraph ${
+                  folder?.isArchive && "folders-section__folder--archive"
+                }`}
+              >
+                {folder?.isArchive && <ArchiveIcon />}
+                {folder.name}
+              </p>
               {folder.canDelete && (
                 <span onClick={() => handleDeleteClick(folder.id)}>
                   <CloseIcon />
@@ -59,32 +75,14 @@ export default function FoldersSection({ currentFolderId, setCurrentFolderId }) 
           );
         })}
 
-      <div
-        className={"folders-section__folder folders-section__folder--archive"}
-      >
-        <p className={"folders-section__paragraph"}>
-          <ArchiveIcon />
-          Архив
-        </p>
-      </div>
+      {/*<div*/}
+      {/*  className={"folders-section__folder folders-section__folder--archive"}*/}
+      {/*>*/}
+      {/*  <p className={"folders-section__paragraph"}>*/}
+      {/*    <ArchiveIcon />*/}
+      {/*    Архив*/}
+      {/*  </p>*/}
+      {/*</div>*/}
     </div>
   );
 }
-
-const folders = [
-  {
-    name: "Аутсорс",
-    tasks: [],
-    id: 0,
-  },
-  {
-    name: "Задачи на февраль",
-    tasks: [],
-    id: 1,
-  },
-  {
-    name: "Задачи дениса",
-    tasks: [],
-    id: 2,
-  },
-];

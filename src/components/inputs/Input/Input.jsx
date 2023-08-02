@@ -7,18 +7,19 @@ export default function Input({
   onChange,
   children,
 }) {
-
   return (
     <div className={"text-input-wrapper"}>
+      <span className={'text-input-wrapper__placeholder'}>
+        {children}
+        {placeholder}
+      </span>
       <input
         className={"text-input-wrapper__input"}
-        placeholder={placeholder}
         type={"text"}
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
-      {!value && children}
     </div>
   );
 }
