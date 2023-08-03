@@ -6,6 +6,7 @@
 
   &__task-title {
     @include title-h1-medium;
+    margin-bottom: 8px;
   }
 
   &__folder-title {
@@ -61,7 +62,9 @@
     display: flex;
     align-items: center;
     column-gap: 12px;
-    padding: 8px 0;
+    margin: 8px 0;
+    cursor: pointer;
+    width: fit-content;
   }
 
   &__archive-icon {
@@ -75,6 +78,8 @@
     align-items: center;
     column-gap: 12px;
     padding: 8px 0;
+    cursor: pointer;
+    width: fit-content;
   }
 
   &__trash-icon {

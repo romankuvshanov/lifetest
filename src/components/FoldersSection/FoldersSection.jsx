@@ -11,6 +11,7 @@ import { useState } from "react";
 export default function FoldersSection({
   currentFolderId,
   setCurrentFolderId,
+  setCurrentTaskId,
 }) {
   const dispatch = useDispatch();
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
@@ -53,7 +54,10 @@ export default function FoldersSection({
                   "folders-section__folder--active"
                 }`}
                 key={folder.id}
-                onClick={() => setCurrentFolderId(folder.id)}
+                onClick={() => {
+                  setCurrentFolderId(folder.id);
+                  setCurrentTaskId(null);
+                }}
               >
                 {/*TODO: Сделать проще, три варианта?*/}
                 <p

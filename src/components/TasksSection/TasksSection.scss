@@ -39,12 +39,24 @@
     filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg) brightness(93%) contrast(68%);
   }
 
+  &__image-placeholder {
+    display: block;
+    margin: auto;
+    max-height: 300px;
+  }
+
   &__task {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 8px;
     padding: 8px;
+    margin-bottom: 4px;
+    column-gap: 10px;
+
+    &--active {
+      background-color: $gray-20;
+    }
 
     &:hover {
       background-color: $gray-20;

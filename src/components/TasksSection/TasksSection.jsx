@@ -6,13 +6,17 @@ import PlusIcon from "../icons/PlusIcon/PlusIcon";
 import Checkbox from "../controls/Checkbox/Checkbox";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleComplete, deleteTodo } from "../../redux/tasksAndFoldersSlice";
-import TaskBar from "../TaskBar/TaskBar";
+import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
+import { useState } from "react";
+import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
 
-export default function TasksSection({ currentFolderId }) {
-  console.log(currentFolderId);
-  console.log('task section render');
+export default function TasksSection({
+  currentFolderId,
+  currentTaskId,
+  setCurrentTaskId,
 
+}) {
+  const [newTaskName, setNewTaskName] = useState("");
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
     (folder) => folder.id === currentFolderId,
@@ -29,6 +33,19 @@ export default function TasksSection({ currentFolderId }) {
     );
   }
 
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      dispatch(
+        addTodo({
+          folderId: currentFolderId,
+          title: newTaskName,
+        }),
+      );
+      setNewTaskName("");
+      document.activeElement.blur();
+    }
+  }
+
   return (
     <>
       <div className={"tasks-section"}>
@@ -43,14 +60,33 @@ export default function TasksSection({ currentFolderId }) {
             <p className={"tasks__headline"}>задача</p>
             <p className={"tasks__headline"}>время</p>
           </div>
-          <Input>
-            <PlusIcon />
-          </Input>
+          {!currentFolder?.isArchive && (
+            <Input
+              placeholder={"Добавить задачу"}
+              value={newTaskName}
+              onChange={(event) => setNewTaskName(event.target.value)}
+              onKeyDown={handleKeyDown}
+            >
+              <PlusIcon />
+            </Input>
+          )}
+          {currentFolder?.tasks.length === 0 && (
+            <img className={'tasks__image-placeholder'}
+              src={zeroTasksPlaceholderImage}
+              alt={"Placeholder image when zero tasks are"}
+            />
+          )}
           {currentFolder?.tasks
             .filter((task) => task?.archived === false)
             .map((task) => {
               return (
-                <div className={"tasks__task"} key={task?.id}>
+                <div
+                  className={`tasks__task ${
+                    currentTaskId === task?.id && "tasks__task--active"
+                  }`}
+                  key={task?.id}
+                  onClick={() => setCurrentTaskId(task?.id)}
+                >
                   <p className={"task__title-wrapper"}>
                     <Checkbox
                       checked={task?.completed}
@@ -64,7 +100,6 @@ export default function TasksSection({ currentFolderId }) {
             })}
         </div>
       </div>
-      <TaskBar />
     </>
   );
 }
