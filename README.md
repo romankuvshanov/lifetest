@@ -1,3 +1,22 @@
+# Тестовое задание
+
+## Скриншоты 
+
+![image](https://github.com/romankuvshanov/lifetest/assets/83648973/00db1f47-19ae-4a95-9b20-be2f2e976fae)
+
+![image](https://github.com/romankuvshanov/lifetest/assets/83648973/34dd20c4-5a8e-4969-a26b-c43b5d9c8e78)
+
+![image](https://github.com/romankuvshanov/lifetest/assets/83648973/0b1844d7-86aa-42da-a925-77800381f2d8)
+
+![image](https://github.com/romankuvshanov/lifetest/assets/83648973/b0a244e3-1854-48a7-bb49-42c7b8c20eec)
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
