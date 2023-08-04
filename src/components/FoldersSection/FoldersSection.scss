@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   & .text-input-wrapper img {
     filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg)

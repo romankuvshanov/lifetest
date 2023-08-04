@@ -34,13 +34,15 @@ export default function TaskBar({
   console.log(currentTask);
 
   function handleDeleteClick() {
-    dispatch(
-      deleteTodo({
-        folderId: currentFolderId,
-        taskId: currentTaskId,
-      }),
-    );
-    setCurrentTaskId(null);
+    if (window.confirm("Удалить задачу?")) {
+      dispatch(
+        deleteTodo({
+          folderId: currentFolderId,
+          taskId: currentTaskId,
+        }),
+      );
+      setCurrentTaskId(null);
+    }
   }
 
   function handleArchiveClick() {
@@ -68,15 +70,6 @@ export default function TaskBar({
         folderId: currentFolderId,
         taskId: taskId,
         completed: completed,
-      }),
-    );
-  }
-
-  function handleAddClick() {
-    dispatch(
-      addASecondToTaskTimeTracked({
-        folderId: currentFolderId,
-        taskId: currentTaskId,
       }),
     );
   }
