@@ -11,12 +11,17 @@ import {
   deleteTodo,
   archiveTodo,
   unArchiveTodo,
+  addASecondToTaskTimeTracked,
 } from "../../redux/tasksAndFoldersSlice";
+import { msToTime } from "../../common/scripts/common";
+import PlayIcon from "../icons/PlayIcon/PlayIcon";
 
 export default function TaskBar({
   currentFolderId,
   currentTaskId,
   setCurrentTaskId,
+  setCurrentRunningTask,
+  currentRunningTask,
 }) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
@@ -67,6 +72,15 @@ export default function TaskBar({
     );
   }
 
+  function handleAddClick() {
+    dispatch(
+      addASecondToTaskTimeTracked({
+        folderId: currentFolderId,
+        taskId: currentTaskId,
+      }),
+    );
+  }
+
   return (
     <div className={"task-bar"}>
       {currentTaskId === null ? (
@@ -82,21 +96,42 @@ export default function TaskBar({
         </>
       ) : (
         <>
-          <p className={"task-bar__task-title"}>
-            {currentTask?.title}
-          </p>
+          <p className={"task-bar__task-title"}>{currentTask?.title}</p>
           <p className={"task-bar__folder-title"}>{currentFolder?.name}</p>
           <div className={"task-bar__counter"}>
             <div className={"task-bar__today"}>
               <p className={"task-bar__date"}>сегодня</p>
-              <p className={"task-bar__time"}>00:20:15</p>
+              <p className={"task-bar__time"}>
+                {msToTime(currentTask?.timeSpentTodayMs)}
+              </p>
             </div>
             <span className={"task-bar__pause-icon"}>
-              <PauseIcon />
+              <span>
+                {currentRunningTask !== null &&
+                currentRunningTask?.folderId === currentFolderId &&
+                currentRunningTask?.taskId === currentTaskId ? (
+                  <span onClick={() => setCurrentRunningTask(null)}>
+                    <PauseIcon />
+                  </span>
+                ) : (
+                  <span
+                    onClick={() =>
+                      setCurrentRunningTask({
+                        folderId: currentFolderId,
+                        taskId: currentTaskId,
+                      })
+                    }
+                  >
+                    <PlayIcon />
+                  </span>
+                )}
+              </span>
             </span>
             <div className={"task-bar__all"}>
               <p className={"task-bar__date"}>всего</p>
-              <p className={"task-bar__time"}>13:20:15</p>
+              <p className={"task-bar__time"}>
+                {msToTime(currentTask?.timeSpentMs)}
+              </p>
             </div>
           </div>
           <div className={"task-bar__buttons"}>
@@ -109,7 +144,14 @@ export default function TaskBar({
               />
               <p>Выполнено</p>
             </div>
-            <div className={"task-bar__archive"} onClick={currentFolder?.isArchive ? handleUnarchiveClick : handleArchiveClick}>
+            <div
+              className={"task-bar__archive"}
+              onClick={
+                currentFolder?.isArchive
+                  ? handleUnarchiveClick
+                  : handleArchiveClick
+              }
+            >
               <span className={"task-bar__archive-icon"}>
                 <ArchiveIcon />
               </span>

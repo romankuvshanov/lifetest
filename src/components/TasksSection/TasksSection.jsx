@@ -8,20 +8,33 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
 import { useState } from "react";
+import { msToTime } from "../../common/scripts/common";
 import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
+
+const SortingTypes = {
+  BYDATE: (a, b) => new Date(b?.dateCreated) - new Date(a?.dateCreated),
+  BYTIMESPENT: (a, b) => a?.timeSpentMs - b?.timeSpentMs,
+  BYSTATUS: (a, b) =>
+    a?.completed - b?.completed || a?.title.localeCompare(b?.title),
+  BYALPHABET: (a, b) => a?.title.localeCompare(b?.title),
+};
 
 export default function TasksSection({
   currentFolderId,
   currentTaskId,
   setCurrentTaskId,
-
 }) {
   const [newTaskName, setNewTaskName] = useState("");
+  const [currentSortingType, setCurrentSortingType] = useState(
+      () => SortingTypes.BYALPHABET
+  );
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
     (folder) => folder.id === currentFolderId,
   )[0];
   const dispatch = useDispatch();
+
+  console.log(currentSortingType);
 
   function handleChange(taskId, completed) {
     dispatch(
@@ -71,13 +84,15 @@ export default function TasksSection({
             </Input>
           )}
           {currentFolder?.tasks.length === 0 && (
-            <img className={'tasks__image-placeholder'}
+            <img
+              className={"tasks__image-placeholder"}
               src={zeroTasksPlaceholderImage}
-              alt={"Placeholder image when zero tasks are"}
+              alt={"Placeholder when there are zero tasks"}
             />
           )}
           {currentFolder?.tasks
             .filter((task) => task?.archived === false)
+            .sort(currentSortingType)
             .map((task) => {
               return (
                 <div
@@ -94,7 +109,9 @@ export default function TasksSection({
                     />
                     <span className={"task__title"}>{task?.title}</span>
                   </p>
-                  <p className={"task__time"}>01:15:00</p>
+                  <p className={"task__time"}>
+                    {task?.timeSpentMs ? msToTime(task?.timeSpentMs) : ""}
+                  </p>
                 </div>
               );
             })}
