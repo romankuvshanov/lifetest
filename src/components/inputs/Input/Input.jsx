@@ -9,7 +9,7 @@ export default function Input({
 }) {
   return (
     <div className={"text-input-wrapper"}>
-      <span className={'text-input-wrapper__placeholder'}>
+      <span className={"text-input-wrapper__placeholder"}>
         {children}
         {placeholder}
       </span>

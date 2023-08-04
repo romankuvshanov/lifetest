@@ -39,7 +39,7 @@ export const initialState = [
         timeSpentMs: 0,
         timeSpentTodayMs: 0,
         lastDayTracked: null,
-        dateCreated: 'Wed Aug 02 2023',
+        dateCreated: "Wed Aug 02 2023",
       },
       {
         id: 1,
@@ -50,7 +50,7 @@ export const initialState = [
         timeSpentMs: 0,
         timeSpentTodayMs: 0,
         lastDayTracked: null,
-        dateCreated: 'Wed Aug 02 2023',
+        dateCreated: "Wed Aug 02 2023",
       },
       {
         id: 2,
@@ -61,7 +61,7 @@ export const initialState = [
         timeSpentMs: 0,
         timeSpentTodayMs: 0,
         lastDayTracked: null,
-        dateCreated: 'Wed Aug 02 2023',
+        dateCreated: "Wed Aug 02 2023",
       },
       {
         id: 3,
@@ -72,7 +72,7 @@ export const initialState = [
         timeSpentMs: 0,
         timeSpentTodayMs: 0,
         lastDayTracked: null,
-        dateCreated: 'Wed Aug 02 2023',
+        dateCreated: "Wed Aug 02 2023",
       },
       {
         id: 4,
@@ -83,7 +83,7 @@ export const initialState = [
         timeSpentMs: 0,
         timeSpentTodayMs: 0,
         lastDayTracked: null,
-        dateCreated: 'Wed Aug 02 2023',
+        dateCreated: "Wed Aug 02 2023",
       },
       {
         id: 5,
@@ -94,7 +94,7 @@ export const initialState = [
         timeSpentMs: 0,
         timeSpentTodayMs: 0,
         lastDayTracked: null,
-        dateCreated: 'Wed Aug 02 2023',
+        dateCreated: "Wed Aug 02 2023",
       },
     ],
     id: 4,

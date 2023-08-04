@@ -10,13 +10,13 @@
   color: $primary-color;
   @include title-h2-medium;
 
+  &__title {
+    padding-left: 8px;
+  }
+
   img {
     filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
       brightness(102%) contrast(101%);
-  }
-
-  &__title {
-    padding-left: 8px;
   }
 
   &:hover {

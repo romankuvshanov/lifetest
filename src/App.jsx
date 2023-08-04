@@ -49,9 +49,9 @@ export default function App() {
         <TaskBar
           currentFolderId={currentFolderId}
           currentTaskId={currentTaskId}
+          currentRunningTask={currentRunningTask}
           setCurrentTaskId={setCurrentTaskId}
           setCurrentRunningTask={setCurrentRunningTask}
-          currentRunningTask={currentRunningTask}
         />
       </div>
     </div>

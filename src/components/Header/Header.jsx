@@ -25,6 +25,7 @@ export default function Header({
         <img src={emblem} alt={"Life logo"} className={"header__emblem"} />
         <p className={"header__title"}>LifeTest</p>
       </div>
+
       {currentTaskId !== null &&
         new Date(currentTask.lastDayTracked).toDateString() ===
           new Date().toDateString() && (

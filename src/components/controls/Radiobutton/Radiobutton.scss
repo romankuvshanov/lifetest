@@ -1,6 +1,6 @@
 @import "src/assets/styles/colors";
 
-.radiobutton{
+.radiobutton {
   height: 16px;
   width: 16px;
   cursor: pointer;
@@ -21,7 +21,7 @@
   }
 
   &::before {
-    content: '';
+    content: "";
     height: 16px;
     width: 16px;
     border-radius: 50%;
@@ -39,7 +39,7 @@
   }
 
   &:checked:after {
-    content: '';
+    content: "";
     height: 6px;
     width: 6px;
     border-radius: 50%;

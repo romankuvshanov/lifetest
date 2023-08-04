@@ -5,9 +5,10 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-  border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #eeeeee;
   height: 64px;
   align-items: center;
+  min-width: 1054px;
 
   &__logo {
     display: flex;
@@ -17,7 +18,7 @@
 
   &__title {
     color: $primary-color;
-    font-family: 'Gilroy', sans-serif;
+    font-family: "Gilroy", sans-serif;
     font-weight: 500;
     font-size: 24px;
     line-height: 24px;
@@ -37,7 +38,8 @@
   }
 
   &__pause-icon {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
+      brightness(102%) contrast(101%);
     cursor: pointer;
     display: flex;
     align-items: center;
