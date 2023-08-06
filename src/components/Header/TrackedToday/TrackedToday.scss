@@ -1,0 +1,82 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/text";
+
+.tracked-today {
+  padding: 16px 24px;
+  background-color: #fff;
+  position: absolute;
+  right: 55px;
+  top: 60px;
+  width: max-content;
+  max-width: 420px;
+  box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  z-index: 1;
+  text-align: left;
+
+  &:before {
+    clip-path: path(
+      "M6.55153 3.35679C8.95198 0.172076 13.7338 0.172081 16.1343 3.3568L21.8953 11H0.790527L6.55153 3.35679Z"
+    );
+    content: "";
+    width: 21.1px;
+    height: 14px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: -9px;
+    right: 20px;
+    box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  &__currentDay {
+    @include title-h2-medium;
+    color: $primary-color;
+    margin-bottom: 14px;
+  }
+
+  &__task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 20px;
+    margin-bottom: 16px;
+
+    &:hover .tracked-today__play-icon {
+      display: inline;
+    }
+  }
+
+  &__icon-and-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  &__play-icon {
+    display: none;
+
+
+  }
+
+  &__pause-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__task-title {
+    @include text-regular;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__time {
+    @include time-regular;
+    color: $gray-80;
+  }
+}
