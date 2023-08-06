@@ -60,7 +60,10 @@ const tasksAndFoldersSlice = createSlice({
       );
       const deletedTask = state[folderIndex].tasks.splice(taskIndex, 1)[0];
 
-      const archiveFolderIndex = state.findIndex((folder) => folder.id === 0);
+      const archiveFolderIndex = state.findIndex(
+        (folder) => folder.id === 0,
+        //     TODO: Change with isArchive
+      );
       state[archiveFolderIndex].tasks.push({
         ...deletedTask,
         previousFolderId: action.payload.folderId,

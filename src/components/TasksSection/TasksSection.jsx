@@ -10,6 +10,7 @@ import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
 import { useState } from "react";
 import { msToTime } from "../../common/scripts/common";
 import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
+import Sorting from "./Sorting/Sorting";
 
 const SortingTypes = {
   BYDATE: (a, b) => new Date(b?.dateCreated) - new Date(a?.dateCreated),
@@ -25,9 +26,7 @@ export default function TasksSection({
   setCurrentTaskId,
 }) {
   const [newTaskName, setNewTaskName] = useState("");
-  const [currentSortingType, setCurrentSortingType] = useState(
-      () => SortingTypes.BYALPHABET
-  );
+  const [currentSortingType, setCurrentSortingType] = useState('BYALPHABET');
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
     (folder) => folder.id === currentFolderId,
@@ -64,9 +63,7 @@ export default function TasksSection({
       <div className={"tasks-section"}>
         <div className={"tasks-section__header"}>
           <p className={"tasks-section__headline"}>{currentFolder?.name}</p>
-          <SecondaryButton title={"Сортировка"}>
-            <SortingIcon />
-          </SecondaryButton>
+          <Sorting currentSortingType={currentSortingType} setCurrentSortingType={setCurrentSortingType} />
         </div>
         <div className={"tasks"}>
           <div className={"tasks__header"}>
@@ -92,7 +89,7 @@ export default function TasksSection({
           )}
           {currentFolder?.tasks
             .filter((task) => task?.archived === false)
-            .sort(currentSortingType)
+            .sort(SortingTypes[currentSortingType])
             .map((task) => {
               return (
                 <div
