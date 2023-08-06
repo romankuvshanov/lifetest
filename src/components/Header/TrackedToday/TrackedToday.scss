@@ -1,14 +1,18 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
 
-.tracked-today {
-  padding: 16px 24px;
-  background-color: #fff;
+.modal-wrapper {
   position: absolute;
-  right: 55px;
-  top: 60px;
-  width: max-content;
-  max-width: 420px;
+  top: 64px;
+}
+
+.tracked-today {
+  padding: 16px;
+  background-color: #fff;
+  position: relative;
+  right: 45px;
+  top: 12px;
+  width: 420px;
   box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   z-index: 1;
@@ -33,6 +37,7 @@
     @include title-h2-medium;
     color: $primary-color;
     margin-bottom: 14px;
+    margin-left: 8px;
   }
 
   &__task {
@@ -40,8 +45,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    column-gap: 20px;
-    margin-bottom: 16px;
+    column-gap: 4px;
+    padding: 8px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+
+    &:hover, &--active {
+      background-color: $gray-20;
+    }
 
     &:hover .tracked-today__play-icon {
       display: inline;
@@ -59,13 +70,16 @@
 
   &__play-icon {
     display: none;
-
-
+    cursor: pointer;
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
   }
 
   &__pause-icon {
-    width: 24px;
-    height: 24px;
+    display: flex;
+    align-items: center;
+    margin: 0 7px;
+    cursor: pointer;
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
   }
 
   &__task-title {
@@ -73,6 +87,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    cursor: pointer;
   }
 
   &__time {

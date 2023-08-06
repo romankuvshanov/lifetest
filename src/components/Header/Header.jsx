@@ -12,6 +12,8 @@ export default function Header({
   currentTaskId,
   currentRunningTask,
   setCurrentRunningTask,
+    setCurrentFolderId,
+    setCurrentTaskId
 }) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
@@ -36,7 +38,6 @@ export default function Header({
           <div
             className={"header__task-time-wrapper"}
             onMouseEnter={() => setShowTrackedTodayMenu(true)}
-            // onMouseLeave={() => setShowTrackedTodayMenu(false)}
           >
             <div className={"header__task"}>
               <p>{currentTask?.title}</p>
@@ -65,7 +66,7 @@ export default function Header({
             </div>
             <div className={"header__time"}>
               <p>
-                Сегодня{" "}
+                Сегодня:{" "}
                 <span className={"header__time-title"}>
                   {msToTime(currentTask?.timeSpentTodayMs)}
                 </span>
@@ -77,6 +78,9 @@ export default function Header({
                 setCurrentRunningTask={setCurrentRunningTask}
                 currentFolderId={currentFolderId}
                 currentTaskId={currentTaskId}
+                setShowTrackedTodayMenu={setShowTrackedTodayMenu}
+                setCurrentFolderId={setCurrentFolderId}
+                setCurrentTaskId={setCurrentTaskId}
               />
             )}
           </div>

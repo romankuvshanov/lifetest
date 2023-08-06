@@ -34,6 +34,8 @@ export default function App() {
         currentTaskId={currentTaskId}
         currentRunningTask={currentRunningTask}
         setCurrentRunningTask={setCurrentRunningTask}
+        setCurrentFolderId={setCurrentFolderId}
+        setCurrentTaskId={setCurrentTaskId}
       />
       <div className={"mainSection"}>
         <FoldersSection

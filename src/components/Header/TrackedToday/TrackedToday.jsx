@@ -9,6 +9,9 @@ export default function TrackedToday({
   setCurrentRunningTask,
   currentTaskId,
   currentFolderId,
+                                         setCurrentTaskId,
+    setCurrentFolderId,
+                                       setShowTrackedTodayMenu,
 }) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   console.log(foldersAndTasks);
@@ -29,7 +32,7 @@ export default function TrackedToday({
 
   return (
     <div className={"modal-wrapper"}>
-      <div className={"tracked-today"}>
+      <div className={"tracked-today"} onMouseLeave={() => setShowTrackedTodayMenu(false)}>
         <p className={"tracked-today__currentDay"}>
           {new Date().toLocaleDateString(undefined, {
             month: "long",
@@ -39,7 +42,7 @@ export default function TrackedToday({
         <ul className={"tracked-today__tasks"}>
           {tasksTrackedToday.map((task) => {
             return (
-              <li className={"tracked-today__task"}>
+              <li className={`tracked-today__task ${currentRunningTask?.taskId === task?.id && 'tracked-today__task--active'}`}>
                 <span className={"tracked-today__icon-and-title"}>
                   {currentRunningTask?.taskId === task?.id ? (
                     <span onClick={() => setCurrentRunningTask(null)} className={"tracked-today__pause-icon"}>
@@ -58,7 +61,11 @@ export default function TrackedToday({
                       <PlayIcon />
                     </span>
                   )}
-                  <span className={"tracked-today__task-title"}>
+                  <span className={"tracked-today__task-title"} onClick={() => {
+                      setCurrentFolderId(task?.folderId);
+                      setCurrentTaskId(task?.id);
+
+                  }  }>
                     {task?.title}
                   </span>
                 </span>
