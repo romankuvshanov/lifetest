@@ -1,0 +1,97 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/text";
+
+.modal-wrapper {
+  position: absolute;
+  top: 64px;
+}
+
+.tracked-today {
+  padding: 16px;
+  background-color: #fff;
+  position: relative;
+  right: 45px;
+  top: 12px;
+  width: 420px;
+  box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  z-index: 1;
+  text-align: left;
+
+  &:before {
+    clip-path: path(
+      "M6.55153 3.35679C8.95198 0.172076 13.7338 0.172081 16.1343 3.3568L21.8953 11H0.790527L6.55153 3.35679Z"
+    );
+    content: "";
+    width: 21.1px;
+    height: 14px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: -9px;
+    right: 20px;
+    box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  &__currentDay {
+    @include title-h2-medium;
+    color: $primary-color;
+    margin-bottom: 14px;
+    margin-left: 8px;
+  }
+
+  &__task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 4px;
+    padding: 8px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+
+    &:hover, &--active {
+      background-color: $gray-20;
+    }
+
+    &:hover .tracked-today__play-icon {
+      display: inline;
+    }
+  }
+
+  &__icon-and-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  &__play-icon {
+    display: none;
+    cursor: pointer;
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+  }
+
+  &__pause-icon {
+    display: flex;
+    align-items: center;
+    margin: 0 7px;
+    cursor: pointer;
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+  }
+
+  &__task-title {
+    @include text-regular;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  &__time {
+    @include time-regular;
+    color: $gray-80;
+  }
+}

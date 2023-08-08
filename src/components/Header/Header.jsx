@@ -4,12 +4,16 @@ import "./Header.scss";
 import { useSelector } from "react-redux";
 import { msToTime } from "../../common/scripts/common";
 import PlayIcon from "../icons/PlayIcon/PlayIcon";
+import { useState } from "react";
+import TrackedToday from "./TrackedToday/TrackedToday";
 
 export default function Header({
   currentFolderId,
   currentTaskId,
   currentRunningTask,
   setCurrentRunningTask,
+    setCurrentFolderId,
+    setCurrentTaskId
 }) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
@@ -18,6 +22,8 @@ export default function Header({
   const currentTask = currentFolder.tasks.find(
     (task) => task.id === currentTaskId,
   );
+
+  const [showTrackedTodayMenu, setShowTrackedTodayMenu] = useState(false);
 
   return (
     <header className={"header"}>
@@ -29,7 +35,10 @@ export default function Header({
       {currentTaskId !== null &&
         new Date(currentTask?.lastDayTracked).toDateString() ===
           new Date().toDateString() && (
-          <div className={"header__task-time-wrapper"}>
+          <div
+            className={"header__task-time-wrapper"}
+            onMouseEnter={() => setShowTrackedTodayMenu(true)}
+          >
             <div className={"header__task"}>
               <p>{currentTask?.title}</p>
               {currentRunningTask !== null &&
@@ -57,12 +66,23 @@ export default function Header({
             </div>
             <div className={"header__time"}>
               <p>
-                Сегодня{" "}
+                Сегодня:{" "}
                 <span className={"header__time-title"}>
                   {msToTime(currentTask?.timeSpentTodayMs)}
                 </span>
               </p>
             </div>
+            {showTrackedTodayMenu && (
+              <TrackedToday
+                currentRunningTask={currentRunningTask}
+                setCurrentRunningTask={setCurrentRunningTask}
+                currentFolderId={currentFolderId}
+                currentTaskId={currentTaskId}
+                setShowTrackedTodayMenu={setShowTrackedTodayMenu}
+                setCurrentFolderId={setCurrentFolderId}
+                setCurrentTaskId={setCurrentTaskId}
+              />
+            )}
           </div>
         )}
     </header>

@@ -35,6 +35,14 @@
     color: $gray-100;
   }
 
+  &__today {
+    width: 70px;
+  }
+
+  &__all {
+    width: 70px;
+  }
+
   &__pause-icon {
     filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
     cursor: pointer;
