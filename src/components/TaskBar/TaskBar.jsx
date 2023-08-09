@@ -63,6 +63,7 @@ export default function TaskBar({
         taskId: currentTaskId,
       }),
     );
+    setCurrentTaskId(null);
   }
 
   function handleChange(taskId, completed) {
