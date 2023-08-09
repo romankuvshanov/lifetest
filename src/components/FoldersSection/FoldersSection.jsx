@@ -18,7 +18,7 @@ export default function FoldersSection({
   const [newFolderName, setNewFolderName] = useState("");
 
   function handleKeyDown(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && newFolderName.length > 0) {
       dispatch(addFolder({ name: newFolderName }));
       setNewFolderName("");
       document.activeElement.blur();
@@ -40,6 +40,7 @@ export default function FoldersSection({
           onKeyDown={handleKeyDown}
           value={newFolderName}
           onChange={(event) => setNewFolderName(event.target.value)}
+          maxLength={32}
         >
           <FolderPlusIcon />
         </Input>

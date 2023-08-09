@@ -1,5 +1,3 @@
-import SecondaryButton from "../buttons/SecondaryButton/SecondaryButton";
-import SortingIcon from "../icons/SortingIcon/SortingIcon";
 import "./TasksSection.scss";
 import Input from "../inputs/Input/Input";
 import PlusIcon from "../icons/PlusIcon/PlusIcon";
@@ -46,7 +44,7 @@ export default function TasksSection({
   }
 
   function handleKeyDown(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && newTaskName.length > 0) {
       dispatch(
         addTodo({
           folderId: currentFolderId,
@@ -76,6 +74,7 @@ export default function TasksSection({
               value={newTaskName}
               onChange={(event) => setNewTaskName(event.target.value)}
               onKeyDown={handleKeyDown}
+              maxLength={64}
             >
               <PlusIcon />
             </Input>
