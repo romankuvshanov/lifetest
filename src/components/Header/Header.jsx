@@ -12,8 +12,8 @@ export default function Header({
   currentTaskId,
   currentRunningTask,
   setCurrentRunningTask,
-    setCurrentFolderId,
-    setCurrentTaskId
+  setCurrentFolderId,
+  setCurrentTaskId,
 }) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
@@ -33,8 +33,7 @@ export default function Header({
       </div>
 
       {currentTaskId !== null &&
-        currentTask?.lastDayTracked ===
-          new Date().toDateString() && (
+        currentTask?.lastDayTracked === new Date().toDateString() && (
           <div
             className={"header__task-time-wrapper"}
             onMouseEnter={() => setShowTrackedTodayMenu(true)}

@@ -11,7 +11,6 @@ import {
   deleteTodo,
   archiveTodo,
   unArchiveTodo,
-  addASecondToTaskTimeTracked,
 } from "../../redux/tasksAndFoldersSlice";
 import { msToTime } from "../../common/scripts/common";
 import PlayIcon from "../icons/PlayIcon/PlayIcon";
@@ -86,7 +85,7 @@ export default function TaskBar({
           </p>
           <img
             src={noTasksOpenedPlaceholder}
-            alt={"Placeholder image when no task chosen"}
+            alt={"Placeholder when no task chosen"}
           />
         </>
       ) : (

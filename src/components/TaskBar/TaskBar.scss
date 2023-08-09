@@ -3,6 +3,7 @@
 
 .task-bar {
   padding: 16px 24px;
+  width: 286px;
 
   &__task-title {
     @include title-h1-medium;

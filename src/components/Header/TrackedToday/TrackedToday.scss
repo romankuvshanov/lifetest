@@ -18,6 +18,10 @@
   z-index: 1;
   text-align: left;
 
+  @media only screen and (max-width: 1439px) {
+    right: 0;
+  }
+
   &:before {
     clip-path: path(
       "M6.55153 3.35679C8.95198 0.172076 13.7338 0.172081 16.1343 3.3568L21.8953 11H0.790527L6.55153 3.35679Z"

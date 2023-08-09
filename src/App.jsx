@@ -6,11 +6,19 @@ import { useEffect, useState } from "react";
 import TaskBar from "./components/TaskBar/TaskBar";
 import { addASecondToTaskTimeTracked } from "./redux/tasksAndFoldersSlice";
 import { useDispatch } from "react-redux";
+import FolderIcon from "./components/icons/FolderIcon/FolderIcon";
 
 export default function App() {
   const [currentFolderId, setCurrentFolderId] = useState(0);
   const [currentTaskId, setCurrentTaskId] = useState(null);
   const [currentRunningTask, setCurrentRunningTask] = useState(null);
+  const [showFolderSection, setShowFolderSection] = useState(
+    window.innerWidth > 1000,
+  );
+  const [windowSize, setWindowSize] = useState({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,6 +35,20 @@ export default function App() {
     }
   }, [currentRunningTask, dispatch]);
 
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize({
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <div className={"app"}>
       <Header
@@ -38,23 +60,40 @@ export default function App() {
         setCurrentTaskId={setCurrentTaskId}
       />
       <div className={"mainSection"}>
-        <FoldersSection
-          currentFolderId={currentFolderId}
-          setCurrentFolderId={setCurrentFolderId}
-          setCurrentTaskId={setCurrentTaskId}
-        />
+        {showFolderSection &&
+        (windowSize.innerWidth >= 1440 || currentTaskId === null) ? (
+          <FoldersSection
+            currentFolderId={currentFolderId}
+            setCurrentFolderId={setCurrentFolderId}
+            setCurrentTaskId={setCurrentTaskId}
+          />
+        ) : (
+          <div className={"folders-section-empty"}>
+            <span
+              className={"folders-section-empty__folder-icon"}
+              onClick={() => {
+                setCurrentTaskId(null);
+                setShowFolderSection(true);
+              }}
+            >
+              <FolderIcon />
+            </span>
+          </div>
+        )}
         <TasksSection
           currentFolderId={currentFolderId}
           currentTaskId={currentTaskId}
           setCurrentTaskId={setCurrentTaskId}
         />
-        <TaskBar
-          currentFolderId={currentFolderId}
-          currentTaskId={currentTaskId}
-          currentRunningTask={currentRunningTask}
-          setCurrentTaskId={setCurrentTaskId}
-          setCurrentRunningTask={setCurrentRunningTask}
-        />
+        {(windowSize.innerWidth >= 1440 || currentTaskId !== null) && (
+          <TaskBar
+            currentFolderId={currentFolderId}
+            currentTaskId={currentTaskId}
+            currentRunningTask={currentRunningTask}
+            setCurrentTaskId={setCurrentTaskId}
+            setCurrentRunningTask={setCurrentRunningTask}
+          />
+        )}
       </div>
     </div>
   );
