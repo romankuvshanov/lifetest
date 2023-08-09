@@ -33,7 +33,7 @@ export default function Header({
       </div>
 
       {currentTaskId !== null &&
-        new Date(currentTask?.lastDayTracked).toDateString() ===
+        currentTask?.lastDayTracked ===
           new Date().toDateString() && (
           <div
             className={"header__task-time-wrapper"}

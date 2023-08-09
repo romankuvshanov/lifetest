@@ -53,6 +53,7 @@ export default function TaskBar({
       }),
     );
     setCurrentTaskId(null);
+    setCurrentRunningTask(null);
   }
 
   function handleUnarchiveClick() {

@@ -9,9 +9,9 @@ export default function TrackedToday({
   setCurrentRunningTask,
   currentTaskId,
   currentFolderId,
-                                         setCurrentTaskId,
-    setCurrentFolderId,
-                                       setShowTrackedTodayMenu,
+  setCurrentTaskId,
+  setCurrentFolderId,
+  setShowTrackedTodayMenu,
 }) {
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   console.log(foldersAndTasks);
@@ -19,11 +19,7 @@ export default function TrackedToday({
   const tasksTrackedToday = [...foldersAndTasks]
     .map((folder) =>
       folder?.tasks
-        .filter(
-          (task) =>
-            new Date(task?.lastDayTracked).toDateString() ===
-            new Date().toDateString(),
-        )
+        .filter((task) => task?.lastDayTracked === new Date().toDateString())
         .map((task) => ({ ...task, folderId: folder?.id })),
     )
     .flat();
@@ -32,7 +28,10 @@ export default function TrackedToday({
 
   return (
     <div className={"modal-wrapper"}>
-      <div className={"tracked-today"} onMouseLeave={() => setShowTrackedTodayMenu(false)}>
+      <div
+        className={"tracked-today"}
+        onMouseLeave={() => setShowTrackedTodayMenu(false)}
+      >
         <p className={"tracked-today__currentDay"}>
           {new Date().toLocaleDateString(undefined, {
             month: "long",
@@ -42,10 +41,19 @@ export default function TrackedToday({
         <ul className={"tracked-today__tasks"}>
           {tasksTrackedToday.map((task) => {
             return (
-              <li className={`tracked-today__task ${currentRunningTask?.taskId === task?.id && 'tracked-today__task--active'}`}>
+              <li
+                className={`tracked-today__task ${
+                  currentRunningTask?.taskId === task?.id &&
+                  "tracked-today__task--active"
+                }`}
+                key={task?.id}
+              >
                 <span className={"tracked-today__icon-and-title"}>
                   {currentRunningTask?.taskId === task?.id ? (
-                    <span onClick={() => setCurrentRunningTask(null)} className={"tracked-today__pause-icon"}>
+                    <span
+                      onClick={() => setCurrentRunningTask(null)}
+                      className={"tracked-today__pause-icon"}
+                    >
                       <PauseIcon />
                     </span>
                   ) : (
@@ -61,11 +69,13 @@ export default function TrackedToday({
                       <PlayIcon />
                     </span>
                   )}
-                  <span className={"tracked-today__task-title"} onClick={() => {
+                  <span
+                    className={"tracked-today__task-title"}
+                    onClick={() => {
                       setCurrentFolderId(task?.folderId);
                       setCurrentTaskId(task?.id);
-
-                  }  }>
+                    }}
+                  >
                     {task?.title}
                   </span>
                 </span>
