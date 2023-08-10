@@ -9,6 +9,7 @@
   height: 64px;
   align-items: center;
 
+
   &__logo {
     display: flex;
     align-items: center;
@@ -21,6 +22,18 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 24px;
+
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  &__task-title-mobile {
+    @include title-h2-medium;
+  }
+
+  &__task-time-mobile {
+    @include time-regular;
   }
 
   &__task-time-wrapper {

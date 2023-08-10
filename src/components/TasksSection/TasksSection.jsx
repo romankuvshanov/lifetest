@@ -5,10 +5,11 @@ import Checkbox from "../controls/Checkbox/Checkbox";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { msToTime } from "../../common/scripts/common";
 import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
 import Sorting from "./Sorting/Sorting";
+import FolderIcon from "../icons/FolderIcon/FolderIcon";
 
 const SortingTypes = {
   BYDATE: (a, b) => new Date(b?.dateCreated) - new Date(a?.dateCreated),
@@ -22,14 +23,33 @@ export default function TasksSection({
   currentFolderId,
   currentTaskId,
   setCurrentTaskId,
+  setShowFolderSection,
 }) {
   const [newTaskName, setNewTaskName] = useState("");
-  const [currentSortingType, setCurrentSortingType] = useState('BYALPHABET');
+  const [currentSortingType, setCurrentSortingType] = useState("BYALPHABET");
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
   const currentFolder = [...foldersAndTasks].filter(
     (folder) => folder.id === currentFolderId,
   )[0];
   const dispatch = useDispatch();
+  const [windowSize, setWindowSize] = useState({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize({
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   console.log(currentSortingType);
 
@@ -60,8 +80,25 @@ export default function TasksSection({
     <>
       <div className={"tasks-section"}>
         <div className={"tasks-section__header"}>
-          <p className={"tasks-section__headline"}>{currentFolder?.name}</p>
-          <Sorting currentSortingType={currentSortingType} setCurrentSortingType={setCurrentSortingType} />
+          <p className={"tasks-section__headline"}>
+            {windowSize.innerWidth < 767 && (
+              <span
+                className={"tasks-section__folder-icon"}
+                onClick={() => {
+                  setShowFolderSection(true);
+                  setCurrentTaskId(null);
+                }}
+              >
+                <FolderIcon />
+              </span>
+            )}
+
+            {currentFolder?.name}
+          </p>
+          <Sorting
+            currentSortingType={currentSortingType}
+            setCurrentSortingType={setCurrentSortingType}
+          />
         </div>
         <div className={"tasks"}>
           <div className={"tasks__header"}>

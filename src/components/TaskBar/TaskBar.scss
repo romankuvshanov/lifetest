@@ -5,17 +5,58 @@
   padding: 16px 24px;
   width: 286px;
 
+  @media only screen and (max-width: 767px) {
+    width: auto;
+  }
+
+  &__titles {
+    @media only screen and (max-width: 767px) {
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
+      margin-bottom: 24px;
+    }
+  }
+
   &__task-title {
     @include title-h1-medium;
     margin-bottom: 8px;
     text-overflow: ellipsis;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__chevron-left {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 16px;
   }
 
   &__folder-title {
+    &:before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 12.5px;
+      background-color: #787878;
+      position: absolute;
+      top: 5.75px;
+      left: -8px;
+    }
+
     @include title-h2-medium;
     color: $gray-80;
     padding-bottom: 24px;
+
+    @media only screen and (max-width: 767px) {
+      padding-bottom: 0;
+      position: relative;
+    }
   }
 
   &__counter {

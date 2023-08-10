@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Golos Text VF";
+
+  src:
+    local("Golos Text VF"),
+    url("./assets/fonts/Golos-Text_VF.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Kantumruy Pro";
   font-weight: 400;
 

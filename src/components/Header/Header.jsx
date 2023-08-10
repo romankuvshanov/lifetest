@@ -4,7 +4,7 @@ import "./Header.scss";
 import { useSelector } from "react-redux";
 import { msToTime } from "../../common/scripts/common";
 import PlayIcon from "../icons/PlayIcon/PlayIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TrackedToday from "./TrackedToday/TrackedToday";
 
 export default function Header({
@@ -25,6 +25,25 @@ export default function Header({
 
   const [showTrackedTodayMenu, setShowTrackedTodayMenu] = useState(false);
 
+  const [windowSize, setWindowSize] = useState({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize({
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <header className={"header"}>
       <div className={"header__logo"}>
@@ -38,39 +57,54 @@ export default function Header({
             className={"header__task-time-wrapper"}
             onMouseEnter={() => setShowTrackedTodayMenu(true)}
           >
-            <div className={"header__task"}>
-              <p>{currentTask?.title}</p>
-              {currentRunningTask !== null &&
-              currentRunningTask?.folderId === currentFolderId &&
-              currentRunningTask?.taskId === currentTaskId ? (
-                <span
-                  onClick={() => setCurrentRunningTask(null)}
-                  className={"header__pause-icon"}
-                >
-                  <PauseIcon />
-                </span>
-              ) : (
-                <span
-                  className={"header__pause-icon"}
-                  onClick={() =>
-                    setCurrentRunningTask({
-                      folderId: currentFolderId,
-                      taskId: currentTaskId,
-                    })
-                  }
-                >
-                  <PlayIcon />
-                </span>
-              )}
-            </div>
-            <div className={"header__time"}>
-              <p>
-                Сегодня:{" "}
-                <span className={"header__time-title"}>
+            {windowSize.innerWidth < 767 ? (
+              <p className={"header__task-mobile"}>
+                <span className={"header__task-title-mobile"}>
+                  {currentTask?.title}
+                </span>{" "}
+                |{" "}
+                <span className={"header__task-time-mobile"}>
                   {msToTime(currentTask?.timeSpentTodayMs)}
                 </span>
               </p>
-            </div>
+            ) : (
+              <>
+                <div className={"header__task"}>
+                  <p>{currentTask?.title}</p>
+                  {currentRunningTask !== null &&
+                  currentRunningTask?.folderId === currentFolderId &&
+                  currentRunningTask?.taskId === currentTaskId ? (
+                    <span
+                      onClick={() => setCurrentRunningTask(null)}
+                      className={"header__pause-icon"}
+                    >
+                      <PauseIcon />
+                    </span>
+                  ) : (
+                    <span
+                      className={"header__pause-icon"}
+                      onClick={() =>
+                        setCurrentRunningTask({
+                          folderId: currentFolderId,
+                          taskId: currentTaskId,
+                        })
+                      }
+                    >
+                      <PlayIcon />
+                    </span>
+                  )}
+                </div>
+                <div className={"header__time"}>
+                  <p>
+                    Сегодня:{" "}
+                    <span className={"header__time-title"}>
+                      {msToTime(currentTask?.timeSpentTodayMs)}
+                    </span>
+                  </p>
+                </div>
+              </>
+            )}
+
             {showTrackedTodayMenu && (
               <TrackedToday
                 currentRunningTask={currentRunningTask}
@@ -84,6 +118,31 @@ export default function Header({
             )}
           </div>
         )}
+      {currentTaskId !== null &&
+        currentTask?.lastDayTracked === new Date().toDateString() && windowSize.innerWidth < 767 &&
+        (
+        currentRunningTask !== null &&
+        currentRunningTask?.folderId === currentFolderId &&
+        currentRunningTask?.taskId === currentTaskId ? (
+          <span
+            onClick={() => setCurrentRunningTask(null)}
+            className={"header__pause-icon"}
+          >
+            <PauseIcon />
+          </span>
+        ) : (
+          <span
+            className={"header__pause-icon"}
+            onClick={() =>
+              setCurrentRunningTask({
+                folderId: currentFolderId,
+                taskId: currentTaskId,
+              })
+            }
+          >
+            <PlayIcon />
+          </span>
+        ))}
     </header>
   );
 }

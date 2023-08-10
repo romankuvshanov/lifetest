@@ -66,6 +66,7 @@ export default function App() {
             currentFolderId={currentFolderId}
             setCurrentFolderId={setCurrentFolderId}
             setCurrentTaskId={setCurrentTaskId}
+            setShowFolderSection={setShowFolderSection}
           />
         ) : (
           <div className={"folders-section-empty"}>
@@ -80,11 +81,17 @@ export default function App() {
             </span>
           </div>
         )}
-        <TasksSection
-          currentFolderId={currentFolderId}
-          currentTaskId={currentTaskId}
-          setCurrentTaskId={setCurrentTaskId}
-        />
+        {windowSize.innerWidth < 767 && currentTaskId !== null ? (
+          ""
+        ) : (
+          <TasksSection
+            currentFolderId={currentFolderId}
+            currentTaskId={currentTaskId}
+            setCurrentTaskId={setCurrentTaskId}
+            setShowFolderSection={setShowFolderSection}
+          />
+        )}
+
         {(windowSize.innerWidth >= 1440 || currentTaskId !== null) && (
           <TaskBar
             currentFolderId={currentFolderId}

@@ -17,6 +17,14 @@
 
   &__headline {
     @include title-h1-medium;
+    display: flex;
+    align-items: center;
+  }
+
+  &__folder-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 18px;
   }
 }
 

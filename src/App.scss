@@ -1,7 +1,3 @@
-//.app {
-//  overflow: hidden;
-//}
-
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
 
@@ -11,6 +7,10 @@
 
   @media only screen and (max-width: 1000px) {
     grid-template-columns: auto minmax(418px, 1fr) auto;
+  }
+
+  @media only screen and (max-width: 767px) {
+    grid-template-columns: none;
   }
 }
 
@@ -24,6 +24,10 @@
   row-gap: 16px;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 
   &__folder-icon {
     cursor: pointer;

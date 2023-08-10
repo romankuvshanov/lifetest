@@ -12,6 +12,7 @@ export default function FoldersSection({
   currentFolderId,
   setCurrentFolderId,
   setCurrentTaskId,
+                                         setShowFolderSection,
 }) {
   const dispatch = useDispatch();
   const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
@@ -34,6 +35,7 @@ export default function FoldersSection({
 
   return (
     <>
+      <div className={'folders-section__overlay'} onClick={() => setShowFolderSection(false)}></div>
       <div className={"folders-section"}>
         <Input
           placeholder={"Добавить папку"}

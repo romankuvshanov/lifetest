@@ -14,6 +14,8 @@ import {
 } from "../../redux/tasksAndFoldersSlice";
 import { msToTime } from "../../common/scripts/common";
 import PlayIcon from "../icons/PlayIcon/PlayIcon";
+import ChevronLeftIcon from "../icons/ChevronLeftIcon/ChevronLeftIcon";
+import {useEffect, useState} from "react";
 
 export default function TaskBar({
   currentFolderId,
@@ -30,7 +32,25 @@ export default function TaskBar({
     (task) => task.id === currentTaskId,
   );
   const dispatch = useDispatch();
+  const [windowSize, setWindowSize] = useState({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  });
   console.log(currentTask);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize({
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   function handleDeleteClick() {
     if (window.confirm("Удалить задачу?")) {
@@ -90,8 +110,19 @@ export default function TaskBar({
         </>
       ) : (
         <>
-          <p className={"task-bar__task-title"}>{currentTask?.title}</p>
-          <p className={"task-bar__folder-title"}>{currentFolder?.name}</p>
+          <div className={'task-bar__titles'}>
+            <p className={"task-bar__task-title"}>
+              {windowSize.innerWidth < 767 &&
+              <span
+                className={"task-bar__chevron-left"}
+                onClick={() => setCurrentTaskId(null)}
+              >
+                <ChevronLeftIcon />
+              </span>}
+              {currentTask?.title}
+            </p>
+            <p className={"task-bar__folder-title"}>{currentFolder?.name}</p>
+          </div>
           <div className={"task-bar__counter"}>
             <div className={"task-bar__today"}>
               <p className={"task-bar__date"}>сегодня</p>
