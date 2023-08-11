@@ -15,7 +15,7 @@ import {
 import { msToTime } from "../../common/scripts/common";
 import PlayIcon from "../icons/PlayIcon/PlayIcon";
 import ChevronLeftIcon from "../icons/ChevronLeftIcon/ChevronLeftIcon";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function TaskBar({
   currentFolderId,
@@ -110,18 +110,19 @@ export default function TaskBar({
         </>
       ) : (
         <>
-          <div className={'task-bar__titles'}>
-            <p className={"task-bar__task-title"}>
-              {windowSize.innerWidth < 767 &&
+          <div className={"task-bar__titles"}>
+            {windowSize.innerWidth < 767 && (
               <span
                 className={"task-bar__chevron-left"}
                 onClick={() => setCurrentTaskId(null)}
               >
                 <ChevronLeftIcon />
-              </span>}
-              {currentTask?.title}
-            </p>
-            <p className={"task-bar__folder-title"}>{currentFolder?.name}</p>
+              </span>
+            )}
+            <div className={'task-bar__titles-wrapper'}>
+              <p className={"task-bar__task-title"}>{currentTask?.title}</p>
+              <p className={"task-bar__folder-title"}>{currentFolder?.name}</p>
+            </div>
           </div>
           <div className={"task-bar__counter"}>
             <div className={"task-bar__today"}>

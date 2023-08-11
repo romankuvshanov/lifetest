@@ -10,6 +10,7 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(2px);
+    z-index: 1;
   }
 }
 
@@ -28,6 +29,7 @@
     position: absolute;
     top: 0;
     height: 100vh;
+    z-index: 2;
   }
 
   & .text-input-wrapper img {

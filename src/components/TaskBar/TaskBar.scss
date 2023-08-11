@@ -18,16 +18,25 @@
     }
   }
 
+  &__titles-wrapper {
+    @media only screen and (max-width: 767px) {
+      display: grid;
+      grid-template-columns: auto minmax(50px, 1fr);
+      align-items: center;
+    }
+  }
+
   &__task-title {
     @include title-h1-medium;
     margin-bottom: 8px;
     text-overflow: ellipsis;
     overflow: hidden;
-    display: flex;
-    align-items: center;
 
     @media only screen and (max-width: 767px) {
       margin-bottom: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 
@@ -35,11 +44,13 @@
     display: inline-flex;
     align-items: center;
     margin-right: 16px;
+    width: 24px;
+    height: 24px;
   }
 
   &__folder-title {
     &:before {
-      content: '';
+      content: "";
       display: block;
       width: 1px;
       height: 12.5px;
@@ -47,6 +58,17 @@
       position: absolute;
       top: 5.75px;
       left: -8px;
+
+      @media only screen and (max-width: 767px) {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 12.5px;
+        background-color: #787878;
+        position: absolute;
+        top: 5.75px;
+        left: 8px;
+      }
     }
 
     @include title-h2-medium;
@@ -56,6 +78,10 @@
     @media only screen and (max-width: 767px) {
       padding-bottom: 0;
       position: relative;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-left: 16px;
     }
   }
 
@@ -86,7 +112,8 @@
   }
 
   &__pause-icon {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
+      brightness(102%) contrast(101%);
     cursor: pointer;
   }
 
@@ -121,7 +148,8 @@
   }
 
   &__archive-icon {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
+      brightness(102%) contrast(101%);
   }
 
   &__delete {
@@ -136,6 +164,7 @@
   }
 
   &__trash-icon {
-    filter: invert(14%) sepia(78%) saturate(4068%) hue-rotate(351deg) brightness(113%) contrast(98%);
+    filter: invert(14%) sepia(78%) saturate(4068%) hue-rotate(351deg)
+      brightness(113%) contrast(98%);
   }
 }
