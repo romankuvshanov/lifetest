@@ -40,12 +40,16 @@
     }
   }
 
-  &__chevron-left {
+  &__chevron-left-mobile {
     display: inline-flex;
     align-items: center;
     margin-right: 16px;
     min-width: 24px;
     height: 24px;
+
+    @media only screen and (min-width: 767px) {
+      display: none;
+    }
   }
 
   &__folder-title {
