@@ -81,7 +81,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-family: 'Golos Text VF', sans-serif;
+      font-family: "Golos Text VF", sans-serif;
       font-weight: 500;
     }
   }
@@ -106,8 +106,14 @@
     }
   }
 
-  &__icon {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+  &__icon-mobile {
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
+      brightness(102%) contrast(101%);
+    cursor: pointer;
+
+    @media only screen and (min-width: 767px) {
+      display: none;
+    }
   }
 
   &__icon-and-title {

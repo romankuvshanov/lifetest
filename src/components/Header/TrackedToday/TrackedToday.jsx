@@ -1,32 +1,26 @@
 import "./TrackedToday.scss";
-import { useSelector } from "react-redux";
 import PlayIcon from "../../icons/PlayIcon/PlayIcon";
-import { msToTime } from "../../../common/scripts/common";
 import PauseIcon from "../../icons/PauseIcon/PauseIcon";
 import DoneIcon from "../../icons/DoneIcon/DoneIcon";
 import CloseIcon from "../../icons/CloseIcon/CloseIcon";
+import { useSelector } from "react-redux";
+import { msToTime } from "../../../common/scripts/common";
 
 export default function TrackedToday({
   currentRunningTask,
   setCurrentRunningTask,
-  currentTaskId,
-  currentFolderId,
   setCurrentTaskId,
   setCurrentFolderId,
   setShowTrackedTodayMenu,
 }) {
-  const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
-  console.log(foldersAndTasks);
-
-  const tasksTrackedToday = [...foldersAndTasks]
+  const tasksAndFolders = useSelector((state) => state.tasksAndFolders);
+  const tasksTrackedToday = [...tasksAndFolders]
     .map((folder) =>
       folder?.tasks
         .filter((task) => task?.lastDayTracked === new Date().toDateString())
         .map((task) => ({ ...task, folderId: folder?.id })),
     )
     .flat();
-
-  console.log(tasksTrackedToday);
 
   return (
     <>
@@ -40,28 +34,24 @@ export default function TrackedToday({
           onMouseLeave={() => setShowTrackedTodayMenu(false)}
         >
           <p className={"tracked-today__currentDay"}>
-            {window.innerWidth < 767 && (
-              <span
-                className={"tracked-today__icon"}
-                onClick={() => setShowTrackedTodayMenu(false)}
-              >
-                <CloseIcon />
-              </span>
-            )}
+            <span
+              className={"tracked-today__icon-mobile"}
+              onClick={() => setShowTrackedTodayMenu(false)}
+            >
+              <CloseIcon />
+            </span>
 
             {new Date().toLocaleDateString(undefined, {
               month: "long",
               day: "numeric",
             })}
 
-            {window.innerWidth < 767 && (
-              <span
-                className={"tracked-today__icon"}
-                onClick={() => setShowTrackedTodayMenu(false)}
-              >
-                <DoneIcon />
-              </span>
-            )}
+            <span
+              className={"tracked-today__icon-mobile"}
+              onClick={() => setShowTrackedTodayMenu(false)}
+            >
+              <DoneIcon />
+            </span>
           </p>
           <ul className={"tracked-today__tasks"}>
             {tasksTrackedToday.map((task) => {
