@@ -8,67 +8,12 @@
   border-bottom: 1px solid #eeeeee;
   height: 64px;
   align-items: center;
-
-  &__logo {
-    display: flex;
-    align-items: center;
-    column-gap: 12px;
-  }
-
-  &__task-mobile {
-    user-select: none;
-  }
-
-  &__title {
-    color: $primary-color;
-    font-family: "Gilroy", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 24px;
-
-    @media only screen and (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  &__task-title-mobile {
-    @include title-h2-medium;
-  }
-
-  &__task-time-mobile {
-    @include time-regular;
-  }
+  column-gap: 10px;
 
   &__task-time-wrapper {
     text-align: right;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-  }
-
-  &__task {
-    display: flex;
-    column-gap: 4px;
-    @include title-h2-medium;
-  }
-
-  &__pause-icon {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
-      brightness(102%) contrast(101%);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    width: 24px;
-    justify-content: center;
-  }
-
-  &__time {
-    @include text-regular;
-    color: $gray-80;
-  }
-
-  &__time-title {
-    @include time-regular;
-    color: $gray-80;
   }
 }

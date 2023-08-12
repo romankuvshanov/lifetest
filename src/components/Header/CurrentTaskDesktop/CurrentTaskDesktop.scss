@@ -1,0 +1,18 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/text";
+
+.current-header-task {
+  display: flex;
+  column-gap: 4px;
+  @include title-h2-medium;
+}
+
+.current-header-task-time {
+  @include text-regular;
+  color: $gray-80;
+}
+
+.current-header-task-time__title {
+  @include time-regular;
+  color: $gray-80;
+}

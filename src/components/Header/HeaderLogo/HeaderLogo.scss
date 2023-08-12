@@ -1,0 +1,20 @@
+@import "src/assets/styles/colors";
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  min-width: 32px;
+
+  &__title {
+    color: $primary-color;
+    font-family: "Gilroy", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+}
