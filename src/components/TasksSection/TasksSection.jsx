@@ -1,17 +1,17 @@
 import "./TasksSection.scss";
+import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
 import Input from "../inputs/Input/Input";
-import PlusIcon from "../icons/PlusIcon/PlusIcon";
 import Checkbox from "../controls/Checkbox/Checkbox";
+import Sorting from "./Sorting/Sorting";
+import PlusIcon from "../icons/PlusIcon/PlusIcon";
+import FolderIcon from "../icons/FolderIcon/FolderIcon";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
-import { useEffect, useState } from "react";
 import { msToTime } from "../../common/scripts/common";
-import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
-import Sorting from "./Sorting/Sorting";
-import FolderIcon from "../icons/FolderIcon/FolderIcon";
 
-const SortingTypes = {
+const SortingTypesFunctions = {
   BYDATE: (a, b) => new Date(b?.dateCreated) - new Date(a?.dateCreated),
   BYTIMESPENT: (a, b) => a?.timeSpentMs - b?.timeSpentMs,
   BYSTATUS: (a, b) =>
@@ -27,31 +27,11 @@ export default function TasksSection({
 }) {
   const [newTaskName, setNewTaskName] = useState("");
   const [currentSortingType, setCurrentSortingType] = useState("BYALPHABET");
-  const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
-  const currentFolder = [...foldersAndTasks].filter(
+  const tasksAndFolders = useSelector((state) => state.tasksAndFolders);
+  const currentFolder = [...tasksAndFolders].filter(
     (folder) => folder.id === currentFolderId,
   )[0];
   const dispatch = useDispatch();
-  const [windowSize, setWindowSize] = useState({
-    innerWidth: window.innerWidth,
-    innerHeight: window.innerHeight,
-  });
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize({
-        innerWidth: window.innerWidth,
-        innerHeight: window.innerHeight,
-      });
-    };
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
-  console.log(currentSortingType);
 
   function handleChange(taskId, completed) {
     dispatch(
@@ -81,9 +61,8 @@ export default function TasksSection({
       <div className={"tasks-section"}>
         <div className={"tasks-section__header"}>
           <p className={"tasks-section__headline"}>
-            {windowSize.innerWidth < 767 && (
               <span
-                className={"tasks-section__folder-icon"}
+                className={"tasks-section__folder-icon-mobile"}
                 onClick={() => {
                   setShowFolderSection(true);
                   setCurrentTaskId(null);
@@ -91,8 +70,6 @@ export default function TasksSection({
               >
                 <FolderIcon />
               </span>
-            )}
-
             {currentFolder?.name}
           </p>
           <Sorting
@@ -125,7 +102,7 @@ export default function TasksSection({
           )}
           {currentFolder?.tasks
             .filter((task) => task?.archived === false)
-            .sort(SortingTypes[currentSortingType])
+            .sort(SortingTypesFunctions[currentSortingType])
             .map((task) => {
               return (
                 <div
