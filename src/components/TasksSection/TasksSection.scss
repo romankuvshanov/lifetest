@@ -17,6 +17,19 @@
 
   &__headline {
     @include title-h1-medium;
+    display: flex;
+    align-items: center;
+  }
+
+  &__folder-icon-mobile {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 18px;
+    cursor: pointer;
+
+    @media only screen and (min-width: 767px) {
+      display: none;
+    }
   }
 }
 

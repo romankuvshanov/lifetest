@@ -1,17 +1,32 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
 
-.overlay {
+.sorting-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 1;
+
+  @media only screen and (max-width: 767px) {
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+  }
 }
 
 .sorting-wrapper {
   position: relative;
 
+  @media only screen and (max-width: 767px) {
+    position: inherit;
+  }
+
+  .secondary-button__title {
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+  }
 }
 
 .sorting-menu {
@@ -26,6 +41,23 @@
   border-radius: 16px;
   z-index: 1;
 
+  @media only screen and (max-width: 1439px) {
+    right: 0;
+  }
+
+  @media only screen and (max-width: 767px) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: auto;
+    width: auto;
+    max-width: initial;
+    box-shadow: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   &:before {
     clip-path: path('M6.55153 3.35679C8.95198 0.172076 13.7338 0.172081 16.1343 3.3568L21.8953 11H0.790527L6.55153 3.35679Z');
     content: "";
@@ -38,12 +70,33 @@
     right: 20px;
     box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
 
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
   }
 
   &__title {
     @include title-h2-medium;
     color: $primary-color;
     margin-bottom: 14px;
+
+    @media only screen and (max-width: 767px) {
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Golos Text VF', sans-serif;
+      font-weight: 500;
+    }
+  }
+
+  &__icon-mobile {
+    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg) brightness(102%) contrast(101%);
+    cursor: pointer;
+
+    @media only screen and (min-width: 767px) {
+      display: none;
+    }
   }
 
   &__options {

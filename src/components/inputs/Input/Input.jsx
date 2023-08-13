@@ -6,6 +6,7 @@ export default function Input({
   onKeyDown,
   onChange,
   children,
+  maxLength = 64,
 }) {
   return (
     <div className={"text-input-wrapper"}>
@@ -19,6 +20,7 @@ export default function Input({
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        maxLength={maxLength}
       />
     </div>
   );

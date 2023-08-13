@@ -2,6 +2,8 @@ import "./Sorting.scss";
 import Radiobutton from "../../controls/Radiobutton/Radiobutton";
 import SortingIcon from "../../icons/SortingIcon/SortingIcon";
 import SecondaryButton from "../../buttons/SecondaryButton/SecondaryButton";
+import CloseIcon from "../../icons/CloseIcon/CloseIcon";
+import DoneIcon from "../../icons/DoneIcon/DoneIcon";
 import { useState } from "react";
 
 export default function Sorting({ currentSortingType, setCurrentSortingType }) {
@@ -11,7 +13,7 @@ export default function Sorting({ currentSortingType, setCurrentSortingType }) {
     <>
       {showSortingMenu && (
         <div
-          className={"overlay"}
+          className={"sorting-overlay"}
           onClick={() => setShowSortingMenu(false)}
         ></div>
       )}
@@ -25,7 +27,21 @@ export default function Sorting({ currentSortingType, setCurrentSortingType }) {
         <div className={"sorting-menu-wrapper"}>
           {showSortingMenu && (
             <div className={"sorting-menu"}>
-              <p className={"sorting-menu__title"}>Сортировка</p>
+              <p className={"sorting-menu__title"}>
+                <span
+                  className={"sorting-menu__icon-mobile"}
+                  onClick={() => setShowSortingMenu(false)}
+                >
+                  <CloseIcon />
+                </span>
+                Сортировка
+                <span
+                  className={"sorting-menu__icon-mobile"}
+                  onClick={() => setShowSortingMenu(false)}
+                >
+                  <DoneIcon />
+                </span>
+              </p>
               <div className={"sorting-menu__options"}>
                 <label className={"sorting-menu__label"}>
                   <Radiobutton

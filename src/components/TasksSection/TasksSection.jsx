@@ -1,18 +1,17 @@
-import SecondaryButton from "../buttons/SecondaryButton/SecondaryButton";
-import SortingIcon from "../icons/SortingIcon/SortingIcon";
 import "./TasksSection.scss";
+import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
 import Input from "../inputs/Input/Input";
-import PlusIcon from "../icons/PlusIcon/PlusIcon";
 import Checkbox from "../controls/Checkbox/Checkbox";
+import Sorting from "./Sorting/Sorting";
+import PlusIcon from "../icons/PlusIcon/PlusIcon";
+import FolderIcon from "../icons/FolderIcon/FolderIcon";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
 import { useState } from "react";
+import { toggleComplete, addTodo } from "../../redux/tasksAndFoldersSlice";
 import { msToTime } from "../../common/scripts/common";
-import zeroTasksPlaceholderImage from "../../assets/images/zero-tasks-placeholder.png";
-import Sorting from "./Sorting/Sorting";
 
-const SortingTypes = {
+const SortingTypesFunctions = {
   BYDATE: (a, b) => new Date(b?.dateCreated) - new Date(a?.dateCreated),
   BYTIMESPENT: (a, b) => a?.timeSpentMs - b?.timeSpentMs,
   BYSTATUS: (a, b) =>
@@ -24,16 +23,15 @@ export default function TasksSection({
   currentFolderId,
   currentTaskId,
   setCurrentTaskId,
+  setShowFolderSection,
 }) {
   const [newTaskName, setNewTaskName] = useState("");
-  const [currentSortingType, setCurrentSortingType] = useState('BYALPHABET');
-  const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
-  const currentFolder = [...foldersAndTasks].filter(
+  const [currentSortingType, setCurrentSortingType] = useState("BYALPHABET");
+  const tasksAndFolders = useSelector((state) => state.tasksAndFolders);
+  const currentFolder = [...tasksAndFolders].filter(
     (folder) => folder.id === currentFolderId,
   )[0];
   const dispatch = useDispatch();
-
-  console.log(currentSortingType);
 
   function handleChange(taskId, completed) {
     dispatch(
@@ -46,7 +44,7 @@ export default function TasksSection({
   }
 
   function handleKeyDown(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && newTaskName.length > 0) {
       dispatch(
         addTodo({
           folderId: currentFolderId,
@@ -62,8 +60,22 @@ export default function TasksSection({
     <>
       <div className={"tasks-section"}>
         <div className={"tasks-section__header"}>
-          <p className={"tasks-section__headline"}>{currentFolder?.name}</p>
-          <Sorting currentSortingType={currentSortingType} setCurrentSortingType={setCurrentSortingType} />
+          <p className={"tasks-section__headline"}>
+              <span
+                className={"tasks-section__folder-icon-mobile"}
+                onClick={() => {
+                  setShowFolderSection(true);
+                  setCurrentTaskId(null);
+                }}
+              >
+                <FolderIcon />
+              </span>
+            {currentFolder?.name}
+          </p>
+          <Sorting
+            currentSortingType={currentSortingType}
+            setCurrentSortingType={setCurrentSortingType}
+          />
         </div>
         <div className={"tasks"}>
           <div className={"tasks__header"}>
@@ -76,6 +88,7 @@ export default function TasksSection({
               value={newTaskName}
               onChange={(event) => setNewTaskName(event.target.value)}
               onKeyDown={handleKeyDown}
+              maxLength={64}
             >
               <PlusIcon />
             </Input>
@@ -89,7 +102,7 @@ export default function TasksSection({
           )}
           {currentFolder?.tasks
             .filter((task) => task?.archived === false)
-            .sort(SortingTypes[currentSortingType])
+            .sort(SortingTypesFunctions[currentSortingType])
             .map((task) => {
               return (
                 <div

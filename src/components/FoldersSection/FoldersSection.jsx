@@ -12,13 +12,14 @@ export default function FoldersSection({
   currentFolderId,
   setCurrentFolderId,
   setCurrentTaskId,
+  setShowFolderSection,
 }) {
   const dispatch = useDispatch();
-  const foldersAndTasks = useSelector((state) => state.tasksAndFolders);
+  const tasksAndFolders = useSelector((state) => state.tasksAndFolders);
   const [newFolderName, setNewFolderName] = useState("");
 
   function handleKeyDown(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && newFolderName.length > 0) {
       dispatch(addFolder({ name: newFolderName }));
       setNewFolderName("");
       document.activeElement.blur();
@@ -34,17 +35,22 @@ export default function FoldersSection({
 
   return (
     <>
+      <div
+        className={"folders-section__overlay"}
+        onClick={() => setShowFolderSection(false)}
+      ></div>
       <div className={"folders-section"}>
         <Input
           placeholder={"Добавить папку"}
           onKeyDown={handleKeyDown}
           value={newFolderName}
           onChange={(event) => setNewFolderName(event.target.value)}
+          maxLength={32}
         >
           <FolderPlusIcon />
         </Input>
 
-        {[...foldersAndTasks]
+        {[...tasksAndFolders]
           .sort((a, b) => b.id - a.id)
           .map((folder) => {
             return (
@@ -59,7 +65,6 @@ export default function FoldersSection({
                   setCurrentTaskId(null);
                 }}
               >
-                {/*TODO: Сделать проще, три варианта?*/}
                 <p
                   className={`folders-section__paragraph ${
                     folder?.isArchive && "folders-section__folder--archive"
@@ -81,15 +86,6 @@ export default function FoldersSection({
               </div>
             );
           })}
-
-        {/*<div*/}
-        {/*  className={"folders-section__folder folders-section__folder--archive"}*/}
-        {/*>*/}
-        {/*  <p className={"folders-section__paragraph"}>*/}
-        {/*    <ArchiveIcon />*/}
-        {/*    Архив*/}
-        {/*  </p>*/}
-        {/*</div>*/}
       </div>
     </>
   );

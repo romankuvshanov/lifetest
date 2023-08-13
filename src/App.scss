@@ -1,8 +1,37 @@
-//.app {
-//  overflow: hidden;
-//}
+@import "src/assets/styles/colors";
+@import "src/assets/styles/text";
 
 .mainSection {
   display: grid;
-  grid-template-columns: 268px minmax(500px, 1fr) 286px;
+  grid-template-columns: auto minmax(500px, 1fr) auto;
+
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: auto minmax(418px, 1fr) auto;
+  }
+
+  @media only screen and (max-width: 767px) {
+    grid-template-columns: none;
+  }
+}
+
+.folders-section-empty {
+  height: calc(100vh - 64px);
+  width: 64px;
+  background-color: $gray-20;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+
+  &__folder-icon {
+    cursor: pointer;
+    filter: invert(50%) sepia(1%) saturate(0%) hue-rotate(57deg) brightness(94%)
+      contrast(91%);
+  }
 }

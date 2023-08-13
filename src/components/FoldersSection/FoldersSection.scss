@@ -1,8 +1,23 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
 
+.folders-section__overlay {
+  position: absolute;
+
+  @media only screen and (max-width: 767px) {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+  }
+}
+
 .folders-section {
   height: calc(100vh - 64px);
+  width: 268px;
   background-color: $gray-20;
   padding: 24px 32px;
   display: flex;
@@ -10,6 +25,13 @@
   row-gap: 16px;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media only screen and (max-width: 767px) {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    z-index: 2;
+  }
 
   & .text-input-wrapper img {
     filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg)
