@@ -1,12 +1,12 @@
+import "./App.scss";
 import Header from "./components/Header/Header";
+import TaskBar from "./components/TaskBar/TaskBar";
 import FoldersSection from "./components/FoldersSection/FoldersSection";
 import TasksSection from "./components/TasksSection/TasksSection";
-import "./App.scss";
+import FolderIcon from "./components/icons/FolderIcon/FolderIcon";
 import { useEffect, useState } from "react";
-import TaskBar from "./components/TaskBar/TaskBar";
 import { addASecondToTaskTimeTracked } from "./redux/tasksAndFoldersSlice";
 import { useDispatch } from "react-redux";
-import FolderIcon from "./components/icons/FolderIcon/FolderIcon";
 
 export default function App() {
   const [currentFolderId, setCurrentFolderId] = useState(0);
@@ -81,9 +81,8 @@ export default function App() {
             </span>
           </div>
         )}
-        {windowSize.innerWidth < 767 && currentTaskId !== null ? (
-          ""
-        ) : (
+
+        {(windowSize.innerWidth >= 767 || currentTaskId === null) && (
           <TasksSection
             currentFolderId={currentFolderId}
             currentTaskId={currentTaskId}
