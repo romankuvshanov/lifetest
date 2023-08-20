@@ -8,3 +8,22 @@ $gray-40: #EEEEEE;
 $gray-60: #D2D2D2;
 $gray-80: #787878;
 $gray-100: #000000;
+
+@mixin svg-color-filter-gray-0 {
+  filter: brightness(0) invert(1);
+}
+
+@mixin svg-color-filter-gray-80 {
+  filter: invert(50%) sepia(1%) saturate(0%) hue-rotate(57deg) brightness(94%)
+  contrast(91%);
+}
+
+@mixin svg-color-filter-primary-color {
+  filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
+  brightness(102%) contrast(101%);
+}
+
+@mixin svg-color-filter-error-color {
+  filter: invert(14%) sepia(78%) saturate(4068%) hue-rotate(351deg)
+  brightness(113%) contrast(98%);
+}

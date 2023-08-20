@@ -15,8 +15,7 @@
   }
 
   img {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
-      brightness(102%) contrast(101%);
+    @include svg-color-filter-primary-color;
   }
 
   &:hover {
@@ -28,7 +27,7 @@
     color: $gray-0;
 
     img {
-      filter: brightness(0) invert(1);
+      @include svg-color-filter-gray-0;
     }
   }
 
@@ -37,8 +36,7 @@
     color: $gray-80;
 
     img {
-      filter: invert(48%) sepia(0%) saturate(783%) hue-rotate(144deg)
-        brightness(97%) contrast(80%);
+      @include svg-color-filter-gray-80;
     }
   }
 }

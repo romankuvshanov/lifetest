@@ -52,7 +52,7 @@
   }
 
   & .text-input-wrapper img {
-    filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg) brightness(93%) contrast(68%);
+    @include svg-color-filter-gray-80;
   }
 
   &__image-placeholder {

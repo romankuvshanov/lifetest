@@ -1,6 +1,7 @@
+@import "src/assets/styles/colors";
+
 .pause-icon, .play-icon {
-  filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
-  brightness(102%) contrast(101%);
+  @include svg-color-filter-primary-color;
   cursor: pointer;
   display: flex;
   align-items: center;

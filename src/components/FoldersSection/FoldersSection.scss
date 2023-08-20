@@ -34,8 +34,7 @@
   }
 
   & .text-input-wrapper img {
-    filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg)
-      brightness(93%) contrast(68%);
+    @include svg-color-filter-gray-80;
   }
 
   &__folder {
@@ -50,7 +49,7 @@
     cursor: pointer;
 
     img {
-      filter: brightness(0) invert(1);
+      @include svg-color-filter-gray-0;
       cursor: pointer;
     }
 
@@ -64,7 +63,7 @@
     }
 
     &:hover img {
-      filter: brightness(0) invert(1);
+      @include svg-color-filter-gray-0;
     }
 
     &--active {
@@ -74,7 +73,7 @@
         color: $gray-0;
 
         img {
-          filter: brightness(0) invert(1);
+          @include svg-color-filter-gray-0;
         }
       }
     }
@@ -84,8 +83,7 @@
 
       img {
         padding-right: 8px;
-        filter: invert(49%) sepia(2%) saturate(7%) hue-rotate(314deg)
-          brightness(93%) contrast(68%);
+        @include svg-color-filter-gray-80;
         cursor: default;
       }
     }

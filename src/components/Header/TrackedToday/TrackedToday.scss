@@ -107,8 +107,7 @@
   }
 
   &__icon-mobile {
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
-      brightness(102%) contrast(101%);
+    @include svg-color-filter-primary-color;
     cursor: pointer;
 
     @media only screen and (min-width: 767px) {
@@ -128,8 +127,7 @@
   &__play-icon {
     display: none;
     cursor: pointer;
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
-      brightness(102%) contrast(101%);
+    @include svg-color-filter-primary-color;
   }
 
   &__pause-icon {
@@ -137,8 +135,7 @@
     align-items: center;
     margin: 0 7px;
     cursor: pointer;
-    filter: invert(46%) sepia(88%) saturate(6668%) hue-rotate(221deg)
-      brightness(102%) contrast(101%);
+    @include svg-color-filter-primary-color;
   }
 
   &__task-title {

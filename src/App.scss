@@ -31,7 +31,6 @@
 
   &__folder-icon {
     cursor: pointer;
-    filter: invert(50%) sepia(1%) saturate(0%) hue-rotate(57deg) brightness(94%)
-      contrast(91%);
+    @include svg-color-filter-gray-80;
   }
 }
