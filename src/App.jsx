@@ -7,6 +7,7 @@ import FolderIcon from "./components/icons/FolderIcon/FolderIcon";
 import { useEffect, useState } from "react";
 import { addASecondToTaskTimeTracked } from "./redux/tasksAndFoldersSlice";
 import { useDispatch } from "react-redux";
+import {BIG_DESKTOP_PX, TABLET_PX} from "./common/scripts/common";
 
 export default function App() {
   const [currentFolderId, setCurrentFolderId] = useState(0);
@@ -61,7 +62,7 @@ export default function App() {
       />
       <div className={"mainSection"}>
         {showFolderSection &&
-        (windowSize.innerWidth >= 1440 || currentTaskId === null) ? (
+        (windowSize.innerWidth >= BIG_DESKTOP_PX || currentTaskId === null) ? (
           <FoldersSection
             currentFolderId={currentFolderId}
             setCurrentFolderId={setCurrentFolderId}
@@ -82,7 +83,7 @@ export default function App() {
           </div>
         )}
 
-        {(windowSize.innerWidth >= 767 || currentTaskId === null) && (
+        {(windowSize.innerWidth >= TABLET_PX || currentTaskId === null) && (
           <TasksSection
             currentFolderId={currentFolderId}
             currentTaskId={currentTaskId}
@@ -91,7 +92,7 @@ export default function App() {
           />
         )}
 
-        {(windowSize.innerWidth >= 1440 || currentTaskId !== null) && (
+        {(windowSize.innerWidth >= BIG_DESKTOP_PX || currentTaskId !== null) && (
           <TaskBar
             currentFolderId={currentFolderId}
             currentTaskId={currentTaskId}

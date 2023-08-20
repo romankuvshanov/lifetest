@@ -1,5 +1,6 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
+@import "src/assets/styles/consts";
 
 .sorting-overlay {
   position: absolute;
@@ -9,7 +10,7 @@
   height: 100vh;
   z-index: 1;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     background-color: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(2px);
   }
@@ -18,12 +19,12 @@
 .sorting-wrapper {
   position: relative;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     position: inherit;
   }
 
   .secondary-button__title {
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       display: none;
     }
   }
@@ -45,7 +46,7 @@
     right: 0;
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -70,7 +71,7 @@
     right: 20px;
     box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       display: none;
     }
   }
@@ -80,7 +81,7 @@
     color: $primary-color;
     margin-bottom: 14px;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       color: #000000;
       display: flex;
       align-items: center;
@@ -94,7 +95,7 @@
     @include svg-color-filter-primary-color;
     cursor: pointer;
 
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: $tablet-px) {
       display: none;
     }
   }

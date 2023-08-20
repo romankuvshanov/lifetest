@@ -1,17 +1,18 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
+@import "src/assets/styles/consts";
 
 .modal-wrapper {
   position: absolute;
   top: 64px;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     position: initial;
   }
 }
 
 .tracked-today-overlay {
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     background-color: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(2px);
     position: absolute;
@@ -35,7 +36,7 @@
   z-index: 1;
   text-align: left;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     bottom: 0;
     position: absolute;
     top: auto;
@@ -65,7 +66,7 @@
     right: 20px;
     box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.12);
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       display: none;
     }
   }
@@ -76,7 +77,7 @@
     margin-bottom: 14px;
     margin-left: 8px;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       color: $primary-color;
       display: flex;
       align-items: center;
@@ -110,7 +111,7 @@
     @include svg-color-filter-primary-color;
     cursor: pointer;
 
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: $tablet-px) {
       display: none;
     }
   }

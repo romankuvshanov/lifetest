@@ -1,16 +1,17 @@
 @import "src/assets/styles/text";
 @import "src/assets/styles/colors";
+@import "src/assets/styles/consts";
 
 .task-bar {
   padding: 16px 24px;
   width: 286px;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     width: auto;
   }
 
   &__titles {
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       display: flex;
       align-items: center;
       column-gap: 16px;
@@ -19,7 +20,7 @@
   }
 
   &__titles-wrapper {
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       display: grid;
       grid-template-columns: auto minmax(50px, 1fr);
       align-items: center;
@@ -32,7 +33,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       margin-bottom: 0;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -48,7 +49,7 @@
     height: 24px;
     cursor: pointer;
 
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: $tablet-px) {
       display: none;
     }
   }
@@ -64,7 +65,7 @@
       top: 5.75px;
       left: -8px;
 
-      @media only screen and (max-width: 767px) {
+      @media only screen and (max-width: $tablet-px) {
         content: "";
         display: block;
         width: 1px;
@@ -80,7 +81,7 @@
     color: $gray-80;
     padding-bottom: 24px;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $tablet-px) {
       padding-bottom: 0;
       position: relative;
       white-space: nowrap;

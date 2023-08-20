@@ -6,6 +6,7 @@ import PlayPause from "./PlayPause/PlayPause";
 import CurrentTaskDesktop from "./CurrentTaskDesktop/CurrentTaskDesktop";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import {TABLET_PX} from "../../common/scripts/common";
 
 export default function Header({
   currentFolderId,
@@ -58,7 +59,7 @@ export default function Header({
             className={"header__task-time-wrapper"}
             onMouseEnter={() => setShowTrackedTodayMenu(true)}
           >
-            {windowSize.innerWidth < 767 ? (
+            {windowSize.innerWidth < TABLET_PX ? (
               <CurrentTaskMobile currentTask={currentTask} />
             ) : (
               <CurrentTaskDesktop
@@ -83,7 +84,7 @@ export default function Header({
             )}
           </div>
 
-          {windowSize.innerWidth < 767 && (
+          {windowSize.innerWidth < TABLET_PX && (
             <PlayPause
               currentRunningTask={currentRunningTask}
               currentFolderId={currentFolderId}

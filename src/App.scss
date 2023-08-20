@@ -1,5 +1,6 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
+@import "src/assets/styles/consts";
 
 .mainSection {
   display: grid;
@@ -9,7 +10,7 @@
     grid-template-columns: auto minmax(418px, 1fr) auto;
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     grid-template-columns: none;
   }
 }
@@ -25,7 +26,7 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     display: none;
   }
 

@@ -1,10 +1,11 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
+@import "src/assets/styles/consts";
 
 .folders-section__overlay {
   position: absolute;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     top: 0;
     left: 0;
     width: 100vw;
@@ -26,7 +27,7 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-px) {
     position: absolute;
     top: 0;
     height: 100vh;

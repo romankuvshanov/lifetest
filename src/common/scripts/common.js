@@ -9,3 +9,7 @@ export function msToTime(duration) {
 
   return hours + ":" + minutes + ":" + seconds;
 }
+
+export const TABLET_PX = 767;
+export const BIG_DESKTOP_PX = 1440;
+

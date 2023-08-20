@@ -1,5 +1,6 @@
 @import "src/assets/styles/colors";
 @import "src/assets/styles/text";
+@import "src/assets/styles/consts";
 
 .tasks-section {
   padding: 24px 20px 0 23px;
@@ -27,7 +28,7 @@
     margin-right: 18px;
     cursor: pointer;
 
-    @media only screen and (min-width: 767px) {
+    @media only screen and (min-width: $tablet-px) {
       display: none;
     }
   }
